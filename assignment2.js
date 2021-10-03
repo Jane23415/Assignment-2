@@ -150,7 +150,38 @@ Array.prototype.myPush = function() {
 
 // LASTINDEXOF //
 Array.prototype.myLastIndexOf = function() {
+    let length = this.length;
+    var temp = -1;
+    
+    if (start === undefined) {
+        for (let i = length - 1; i > -1; i--) {
+            if (this[i] == element) {
+                temp = i;
+                break;
+            }
+        }
+    }
 
+    else if (start < 0) {
+        var new_start = start + length;
+        for (let i = new_start; i > -1; i--) {
+            if (this[i] == element) {
+                temp = i;
+                break;
+            }
+        }
+    }
+
+    else {
+        for (let i = start; i > -1; i--) {
+            if (this[i] == element) {
+                temp = i;
+                break;
+            }
+        }
+    }
+    
+    return temp;
 };
 
 // KEYS //
