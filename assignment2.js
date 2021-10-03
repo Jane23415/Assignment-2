@@ -30,7 +30,13 @@ Array.prototype.myFilter = function() {
 
 // SOME //
 Array.prototype.mySome = function() {
-
+    for (let i = 0; i < this.length; i++) {
+        var temp = callback(this[i], i, this)
+        if (temp === true) {
+            break;
+        }
+    }
+    return temp;
 };
 
 // EVERY //
