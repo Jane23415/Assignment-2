@@ -186,7 +186,13 @@ Array.prototype.myLastIndexOf = function() {
 
 // KEYS //
 Object.grabKeys = function() {
+    const new_arr = [];
 
+    for (key in obj) {
+        new_arr.push(key);
+    }
+
+    return new_arr;
 };
 
 // VALUES //
