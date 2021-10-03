@@ -1,5 +1,5 @@
 // FOR EACH //
-Array.prototype.myEach = function() {
+Array.prototype.myEach = function(callbackFn) {
     for (let i = 0; i < this.length; i++) {
         if (this[i] === undefined) continue;
         callbackFn(this[i], i, this);
@@ -7,7 +7,7 @@ Array.prototype.myEach = function() {
 };
 
 // MAP //
-Array.prototype.myMap = function() {
+Array.prototype.myMap = function(callback) {
     const new_arr = [];
 
     for (let i = 0; i < this.length; i++) {
@@ -18,18 +18,20 @@ Array.prototype.myMap = function() {
 };
 
 // FILTER //
-Array.prototype.myFilter = function() {
+Array.prototype.myFilter = function(callback) {
     const new_arr = [];
 
     for (let i = 0; i < this.length; i++) {
         var temp = callback(this[i], i, this);
-        new_arr[i] = temp;
+        if (temp === true) {
+            new_arr.push(this[i]);
+        }
     }
     return new_arr;
 };
 
 // SOME //
-Array.prototype.mySome = function() {
+Array.prototype.mySome = function(callback) {
     for (let i = 0; i < this.length; i++) {
         var temp = callback(this[i], i, this)
         if (temp === true) {
@@ -40,7 +42,7 @@ Array.prototype.mySome = function() {
 };
 
 // EVERY //
-Array.prototype.myEvery = function() {
+Array.prototype.myEvery = function(callback) {
     for (let i = 0; i < this.length; i++) {
         var temp = callback(this[i], i, this)
         if (temp === false) {
@@ -51,15 +53,15 @@ Array.prototype.myEvery = function() {
 };
 
 // REDUCE //
-Array.prototype.myReduce = function() {
+Array.prototype.myReduce = function(callback, start) {
     var temp = 0;
 
-    if (start != undefined) {
-        sum = start;
+    if (start != undefined) { // if there is a initial value, set sum to start
+        var sum = start;
     }
 
     else {
-        sum = this[0];
+        sum = this[0]; // if there is no initial value, set sum to first value in the array 
         temp++;
     }
 
@@ -71,11 +73,11 @@ Array.prototype.myReduce = function() {
 };
 
 // INCLUDES //
-Array.prototype.myIncludes = function() {
+Array.prototype.myIncludes = function(element, index) {
     let length = this.length;
     var temp = false;
 
-    if ((index === undefined) || (index > 0 && index < length)) {
+    if (index === undefined) {
         for (let i = 0; i < length; i++) {
             if (this[i] == element) {
                 temp = true;
@@ -84,9 +86,17 @@ Array.prototype.myIncludes = function() {
         }
     }
     
-    else if (index < 0) {
+    else if (index < 0) { // if start is less than 0, compute new start by adding length 
         var new_index = index + length;
-        if (new_index > 0 && new_index < length) {
+        if (new_index > 0 && new_index < length) { // if new start is > 0 and < length, start searching at new start
+            for (let i = new_index; i < length; i++) {
+                if (this[i] == element) {
+                    temp = true;
+                    break;
+                }
+            }
+        }
+        else if (new_index <= 0) { // if new start is still <= 0, search entire array 
             for (let i = 0; i < length; i++) {
                 if (this[i] == element) {
                     temp = true;
@@ -95,12 +105,21 @@ Array.prototype.myIncludes = function() {
             }
         }
     }
+    
+    else if (index > 0 && index < length) { // if start is > 0 and < length, start searching at start
+        for (let i = index; i < length; i++) {
+            if (this[i] == element) {
+                temp = true;
+                break;
+            }
+        }
+    }
 
     return temp;
 };
 
 // INDEXOF //
-Array.prototype.myIndexOf = function() {
+Array.prototype.myIndexOf = function(element, start) {
     let length = this.length;
     var temp = -1;
     let begin = 0;
@@ -114,7 +133,7 @@ Array.prototype.myIndexOf = function() {
             }
         }
     }
-    else if (start < 0) {
+    else if (start < 0) { // if start is less than 0, compute new start by adding length 
         begin = length + start;
         for (let i = begin; i < length; i++) {
             if (this[i] == element) {
@@ -137,7 +156,7 @@ Array.prototype.myIndexOf = function() {
 };
 
 // PUSH //
-Array.prototype.myPush = function() {
+Array.prototype.myPush = function(...args) {
     let arg_i = 0;
     let length = this.length;
 
@@ -149,11 +168,11 @@ Array.prototype.myPush = function() {
 };
 
 // LASTINDEXOF //
-Array.prototype.myLastIndexOf = function() {
+Array.prototype.myLastIndexOf = function(element, start) {
     let length = this.length;
-    var temp = -1;
+    var temp = -1;  
     
-    if (start === undefined) {
+    if (start === undefined) { 
         for (let i = length - 1; i > -1; i--) {
             if (this[i] == element) {
                 temp = i;
@@ -162,7 +181,7 @@ Array.prototype.myLastIndexOf = function() {
         }
     }
 
-    else if (start < 0) {
+    else if (start < 0) { // if start is less than 0, compute new start by adding length 
         var new_start = start + length;
         for (let i = new_start; i > -1; i--) {
             if (this[i] == element) {
@@ -185,22 +204,22 @@ Array.prototype.myLastIndexOf = function() {
 };
 
 // KEYS //
-Object.grabKeys = function() {
-    const new_arr = [];
+Object.grabKeys = function(obj) {
+    const new_arr = []; // Create array
 
-    for (key in obj) {
-        new_arr.push(key);
+    for (key in obj) { 
+        new_arr.push(key); // append the key to new array 
     }
 
     return new_arr;
 };
 
 // VALUES //
-Object.grabValues = function() {
-    const new_arr = [];
+Object.grabValues = function(obj) {
+    const new_arr = []; // Create new array 
 
     for (key in obj) {
-        new_arr.push(obj[key])
+        new_arr.push(obj[key]) // append the value at key to new array 
     }
 
     return new_arr
