@@ -132,7 +132,7 @@ Array.prototype.myIndexOf = function() {
             }
         }
     }
-    
+
     return temp;
 };
 
