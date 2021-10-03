@@ -1,5 +1,5 @@
 // FOR EACH //
-Array.prototype.myEach = function() {
+Array.prototype.myEach = function(callbackFn) {
     for (let i = 0; i < this.length; i++) {
         if (this[i] === undefined) continue;
         callbackFn(this[i], i, this);
@@ -7,7 +7,7 @@ Array.prototype.myEach = function() {
 };
 
 // MAP //
-Array.prototype.myMap = function() {
+Array.prototype.myMap = function(callback) {
     const new_arr = [];
 
     for (let i = 0; i < this.length; i++) {
@@ -18,7 +18,7 @@ Array.prototype.myMap = function() {
 };
 
 // FILTER //
-Array.prototype.myFilter = function() {
+Array.prototype.myFilter = function(callback) {
     const new_arr = [];
 
     for (let i = 0; i < this.length; i++) {
@@ -29,7 +29,7 @@ Array.prototype.myFilter = function() {
 };
 
 // SOME //
-Array.prototype.mySome = function() {
+Array.prototype.mySome = function(callback) {
     for (let i = 0; i < this.length; i++) {
         var temp = callback(this[i], i, this)
         if (temp === true) {
@@ -40,7 +40,7 @@ Array.prototype.mySome = function() {
 };
 
 // EVERY //
-Array.prototype.myEvery = function() {
+Array.prototype.myEvery = function(callback) {
     for (let i = 0; i < this.length; i++) {
         var temp = callback(this[i], i, this)
         if (temp === false) {
@@ -51,7 +51,7 @@ Array.prototype.myEvery = function() {
 };
 
 // REDUCE //
-Array.prototype.myReduce = function() {
+Array.prototype.myReduce = function(callback, start) {
     var temp = 0;
 
     if (start != undefined) {
@@ -71,7 +71,7 @@ Array.prototype.myReduce = function() {
 };
 
 // INCLUDES //
-Array.prototype.myIncludes = function() {
+Array.prototype.myIncludes = function(element, index) {
     let length = this.length;
     var temp = false;
 
@@ -100,7 +100,7 @@ Array.prototype.myIncludes = function() {
 };
 
 // INDEXOF //
-Array.prototype.myIndexOf = function() {
+Array.prototype.myIndexOf = function(element, start) {
     let length = this.length;
     var temp = -1;
     let begin = 0;
@@ -137,7 +137,7 @@ Array.prototype.myIndexOf = function() {
 };
 
 // PUSH //
-Array.prototype.myPush = function() {
+Array.prototype.myPush = function(...args) {
     let arg_i = 0;
     let length = this.length;
 
@@ -149,7 +149,7 @@ Array.prototype.myPush = function() {
 };
 
 // LASTINDEXOF //
-Array.prototype.myLastIndexOf = function() {
+Array.prototype.myLastIndexOf = function(element, start) {
     let length = this.length;
     var temp = -1;
     
@@ -185,7 +185,7 @@ Array.prototype.myLastIndexOf = function() {
 };
 
 // KEYS //
-Object.grabKeys = function() {
+Object.grabKeys = function(obj) {
     const new_arr = [];
 
     for (key in obj) {
@@ -196,7 +196,7 @@ Object.grabKeys = function() {
 };
 
 // VALUES //
-Object.grabValues = function() {
+Object.grabValues = function(obj) {
     const new_arr = [];
 
     for (key in obj) {
