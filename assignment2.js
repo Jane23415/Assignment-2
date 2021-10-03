@@ -53,9 +53,11 @@ Array.prototype.myEvery = function() {
 // REDUCE //
 Array.prototype.myReduce = function() {
     var temp = 0;
+
     if (start != undefined) {
         sum = start;
     }
+
     else {
         sum = this[0];
         temp++;
@@ -64,12 +66,37 @@ Array.prototype.myReduce = function() {
     for (let i = temp; i < this.length; i++) {
         sum = callback(sum, this[i], i, this);
     }
+    
     return sum;
 };
 
 // INCLUDES //
 Array.prototype.myIncludes = function() {
+    let length = this.length;
+    var temp = false;
 
+    if ((index === undefined) || (index > 0 && index < length)) {
+        for (let i = 0; i < length; i++) {
+            if (this[i] == element) {
+                temp = true;
+                break;
+            }
+        }
+    }
+    
+    else if (index < 0) {
+        var new_index = index + length;
+        if (new_index > 0 && new_index < length) {
+            for (let i = 0; i < length; i++) {
+                if (this[i] == element) {
+                    temp = true;
+                    break;
+                }
+            }
+        }
+    }
+
+    return temp;
 };
 
 // INDEXOF //
