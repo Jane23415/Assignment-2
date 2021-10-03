@@ -8,7 +8,13 @@ Array.prototype.myEach = function() {
 
 // MAP //
 Array.prototype.myMap = function() {
+    const new_arr = [];
 
+    for (let i = 0; i < this.length; i++) {
+        var temp = callback(this[i], i, this);
+        new_arr[i] = temp;
+    }
+    return new_arr;
 };
 
 // FILTER //
