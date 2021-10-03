@@ -77,7 +77,7 @@ Array.prototype.myIncludes = function(element, index) {
     let length = this.length;
     var temp = false;
 
-    if ((index === undefined) || (index > 0 && index < length)) {
+    if (index === undefined) {
         for (let i = 0; i < length; i++) {
             if (this[i] == element) {
                 temp = true;
@@ -89,11 +89,28 @@ Array.prototype.myIncludes = function(element, index) {
     else if (index < 0) {
         var new_index = index + length;
         if (new_index > 0 && new_index < length) {
+            for (let i = new_index; i < length; i++) {
+                if (this[i] == element) {
+                    temp = true;
+                    break;
+                }
+            }
+        }
+        else if (new_index <= 0) {
             for (let i = 0; i < length; i++) {
                 if (this[i] == element) {
                     temp = true;
                     break;
                 }
+            }
+        }
+    }
+    
+    else if (index > 0 && index < length) {
+        for (let i = index; i < length; i++) {
+            if (this[i] == element) {
+                temp = true;
+                break;
             }
         }
     }
