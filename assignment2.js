@@ -23,7 +23,9 @@ Array.prototype.myFilter = function(callback) {
 
     for (let i = 0; i < this.length; i++) {
         var temp = callback(this[i], i, this);
-        new_arr[i] = temp;
+        if (temp === true) {
+            new_arr.push(this[i]);
+        }
     }
     return new_arr;
 };
