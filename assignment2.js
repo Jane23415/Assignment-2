@@ -55,9 +55,10 @@ Array.prototype.myEvery = function(callback) {
 // REDUCE //
 Array.prototype.myReduce = function(callback, start) {
     var temp = 0;
+    var sum = 0;
 
     if (start != undefined) { // if there is a initial value, set sum to start
-        var sum = start;
+        sum = start;
     }
 
     else {
