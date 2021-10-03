@@ -52,7 +52,19 @@ Array.prototype.myEvery = function() {
 
 // REDUCE //
 Array.prototype.myReduce = function() {
+    var temp = 0;
+    if (start != undefined) {
+        sum = start;
+    }
+    else {
+        sum = this[0];
+        temp++;
+    }
 
+    for (let i = temp; i < this.length; i++) {
+        sum = callback(sum, this[i], i, this);
+    }
+    return sum;
 };
 
 // INCLUDES //
