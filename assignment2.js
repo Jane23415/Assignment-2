@@ -101,7 +101,39 @@ Array.prototype.myIncludes = function() {
 
 // INDEXOF //
 Array.prototype.myIndexOf = function() {
+    let length = this.length;
+    var temp = -1;
+    let begin = 0;
+   
+    if(start === undefined) {
+        begin = 0;
+        for (let i = begin; i < length; i++) {
+            if (this[i] == element) {
+                temp = i;
+                break;
+            }
+        }
+    }
+    else if (start < 0) {
+        begin = length + start;
+        for (let i = begin; i < length; i++) {
+            if (this[i] == element) {
+                temp = i;
+                break;
+            }
+        }
+    }
+    else {
+        begin = start;
+        for (let i = begin; i < length; i++) {
+            if (this[i] == element) {
+                temp = i;
+                break;
+            }
+        }
+    }
 
+    return temp;
 };
 
 // PUSH //
