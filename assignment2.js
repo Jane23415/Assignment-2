@@ -197,5 +197,11 @@ Object.grabKeys = function() {
 
 // VALUES //
 Object.grabValues = function() {
+    const new_arr = [];
 
+    for (key in obj) {
+        new_arr.push(obj[key])
+    }
+
+    return new_arr
 };
