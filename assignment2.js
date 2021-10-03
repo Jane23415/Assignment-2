@@ -8,7 +8,7 @@ Array.prototype.myEach = function(callbackFn) {
 
 // MAP //
 Array.prototype.myMap = function(callback) {
-    const new_arr = [];
+    const new_arr = []; // Create new array 
 
     for (let i = 0; i < this.length; i++) {
         var temp = callback(this[i], i, this);
